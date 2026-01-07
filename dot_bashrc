@@ -1,0 +1,160 @@
+# ~/.bashrc — Optimized & Fixed
+
+# --- 1. Interactive Check (Exit early if not running interactively) ---
+[[ $- != *i* ]] && return
+
+# --- 2. Flow Control (Must be early to enable Ctrl+S binding) ---
+# Disables software flow control, freeing up Ctrl+S and Ctrl+Q
+stty -ixon
+
+# --- 3. Bash Completion ---
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+# --- 4. History Settings ---
+HISTSIZE=1000000
+HISTFILESIZE=2000000
+HISTFILE=~/.bash_history
+HISTCONTROL=ignoredups:ignorespace
+shopt -s histappend
+# Appends history immediately (good for multiple tabs)
+PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
+
+# --- 5. PATH & Environment Variables ---
+# Consolidating PATH
+export PATH="$HOME/.cargo/bin:$HOME/.fzf/bin:$HOME/.local/share/intelli-shell/bin:/usr/local/go/bin:/usr/local/cuda-13.0/bin:$HOME/.nvm/versions/node/v*/bin:$PATH"
+
+# Go Lang
+export GOPATH="$(go env GOPATH 2>/dev/null)"
+[[ -n "$GOPATH" ]] && export PATH="$PATH:$GOPATH/bin"
+
+# CUDA
+export PATH="/usr/local/cuda/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda-13.0/lib64:$LD_LIBRARY_PATH"
+
+# Gemini API
+export GEMINI_API_KEY="AIzaSyCS3y3fJ9d9jCwKbb_2JmENt8VJiVQ-6Uc"
+
+# --- 6. Tool Initialization ---
+
+# Cargo (Rust)
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+# NVM (Node Manager)
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+
+# Homebrew
+if [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# Conda
+if [[ -f "$HOME/Files/Anaconda/etc/profile.d/conda.sh" ]]; then
+  source "$HOME/Files/Anaconda/etc/profile.d/conda.sh"
+  conda deactivate 2>/dev/null
+fi
+
+# Dircolors (LS Colors)
+if [[ -x /usr/bin/dircolors ]]; then
+  [[ -r ~/.dircolors ]] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+# Lesspipe (Fixed trailing 'n' typo)
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# --- 7. Plugins & Interactive Tools ---
+
+# --- IntelliShell ---
+if [[ -x "$HOME/.local/share/intelli-shell/bin/intelli-shell" ]]; then
+   export INTELLI_HOME="$HOME/.local/share/intelli-shell"
+    # 1. Disable the "Clear Line" binding that breaks the Escape key
+   export INTELLI_SKIP_ESC_BIND=1
+    # 2. Bind the "Search/Suggest" feature to Ctrl+s
+   export INTELLI_SEARCH_HOTKEY="\C-["
+    # 3. Initialize the tool (it will now use the settings above)
+   eval "$("$HOME/.local/share/intelli-shell/bin/intelli-shell" init bash)"
+fi
+
+# Zoxide (Better 'cd')
+command -v zoxide >/dev/null 2>&1 && eval "$(zoxide init bash)"
+
+# FZF (Fuzzy Finder)
+if [[ -f ~/.fzf.bash ]]; then
+  source ~/.fzf.bash
+fi
+
+export FZF_DEFAULT_OPTS=" \
+--height=85% --layout=reverse --border=rounded \
+--border-label=' FZF ' --border-label-pos=top \
+--info=inline --prompt='❯ ' --marker='✓ ' --pointer='▶ ' \
+--separator='─' --scrollbar='▐' \
+--margin=2,1 --padding=1,2 --ansi \
+--preview 'bat --color=always --style=numbers --line-range :500 {} 2>/dev/null || ls -alh --color=always {}' \
+--preview-window=right:50%:rounded"
+
+# --- 8. Aliases ---
+
+# Listing (Requires 'eza')
+alias ls='eza -a --icons --color=always --no-user --hyperlink'
+alias lt='eza -a --tree --icons --color=always --no-user --hyperlink'
+alias lf='eza -A --tree --only-dirs --icons --color=always --no-user --hyperlink'
+# Fixed: Removed '=always' from --icons flag as it is non-standard
+alias lm='eza -lha --extended --total-size --sort=size --no-user --icons --color=always --changed --modified --created --hyperlink'
+alias ll='eza -lah --icons --color=always --hyperlink --no-user'
+#tmux
+# Tmux
+alias tmatt='tmux attach -t'
+alias tmcrt='tmux new -s'
+alias tkill='tmux kill-server'
+alias tmls='tmux ls'
+alias tmdel='tmux kill-session -t'
+
+# Git
+alias gs='git status'
+alias ga='git add .'
+alias gc='git commit -m'
+alias gp='git push'
+
+# System / Utils
+alias ..='cd ..'
+alias upd='sudo apt update -y'
+alias upg='sudo apt full-upgrade'
+alias cls='clear'
+alias cp='cp -i'
+alias refresh='source ~/.bashrc'
+alias delete='sudo rm -rf'
+alias ins='sudo dpkg -i'
+alias nvi='nvidia-smi'
+alias tui='tuios'
+alias lv='nvim'
+alias ff='fastfetch'
+alias python='python3'
+alias mk='mkdir'
+alias df='df -h'
+alias free='free -m'
+alias grep='grep --color=auto'
+alias zz='zee'
+alias conff='zee .bashrc'
+alias mb='moonbit'
+alias shellcheck='echo $0'
+alias fishkill='killall -9 fish'
+alias czm='chezmoi add'
+alias czr='chezmoi re-add'
+# --- 9. Window Title & Prompt ---
+case "$TERM" in
+  xterm*|rxvt*)
+    PROMPT_COMMAND='printf "\033]0;%s@%s: %s\007" "$USER" "$HOSTNAME" "$PWD"; '"$PROMPT_COMMAND"
+  ;;
+esac
+
+
+eval "$(oh-my-posh init bash --config /home/kanashii/.cache/oh-my-posh/themes/blue-owl.omp.json)"
+# Starship Prompt (Must be last to override PS1 correctly)
+#command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"

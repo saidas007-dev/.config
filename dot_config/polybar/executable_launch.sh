@@ -1,0 +1,24 @@
+<<<<<<< HEAD
+#!/usr/bin/env bash
+killall -q polybar
+while pgrep -u $UID -x polybar >/dev/null; do sleep 0.2; done
+polybar top &
+disown
+
+=======
+#!/bin/bash
+
+# Terminate already running bar instances
+killall -q polybar
+
+# Wait until the processes have been shut down
+while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
+
+# Launch the Main Bar
+polybar top 2>&1 | tee -a /tmp/polybar.log &
+
+# Launch the Hidden Tray Bar
+polybar tray 2>&1 | tee -a /tmp/polybar-tray.log &
+
+disown
+>>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))

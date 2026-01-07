@@ -1,0 +1,109 @@
+/*
+ * ROFI WALLPAPER SELECTOR - GLASS THEME (Compact & Large)
+ * Size: 90% Screen | Feature: Background Image Support
+ */
+
+configuration {
+    modi:                        "dmenu";
+    show-icons:                  true;
+    drun-display-format:         "{name}";
+    hover-select:                true;
+    me-select-entry:             "";
+    me-accept-entry:             "MousePrimary";
+}
+
+@import "shared/fonts.rasi" 
+
+/* --- Main Window --- */
+window {
+    enabled:                     true;
+    fullscreen:                  false;
+    transparency:                "real";
+    cursor:                      "default";
+    spacing:                     0px;
+    padding:                     0px;
+    
+    /* SIZE UPDATE: 90% of screen width/height */
+    width:                       90%;
+    height:                      90%;
+    
+    border:                      2px;
+    border-radius:               20px;
+    border-color:                #ffffff15;
+
+    /* Background Configuration */
+    background-color:            #1e1e2e60; 
+}
+
+/* --- Main Container --- */
+mainbox {
+    enabled:                     true;
+    children:                    [ listview ];
+    background-color:            transparent;
+    spacing:                     0px;
+    padding:                     20px; /* Reduced padding to fit larger images */
+}
+
+/* --- Grid of Wallpapers --- */
+listview {
+    enabled:                     true;
+    columns:                     5;
+    lines:                       3; 
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    
+    /* COMPACTNESS UPDATE: Tight spacing */
+    spacing:                     5px; 
+    
+    background-color:            transparent;
+    cursor:                      "default";
+}
+
+/* --- Individual Wallpaper Cards --- */
+element {
+    enabled:                     true;
+    orientation:                 vertical;
+    spacing:                     0px;
+    
+    /* REMOVED PADDING: Images touch the selection border */
+    padding:                     0px; 
+    
+    border-radius:               15px;
+    cursor:                      pointer;
+    background-color:            transparent;
+    text-color:                  #ffffff;
+}
+
+/* Hover Effect */
+element selected.normal {
+    background-color:            #ffffff25;
+    text-color:                  #ffffff;
+    border:                      1px;
+    border-color:                #ffffff30;
+}
+
+/* --- The Image Preview --- */
+element-icon {
+    /* SIZE UPDATE: Made slightly larger */
+    size:                        280px; 
+    cursor:                      inherit;
+    border-radius:               12px;
+    background-color:            transparent;
+    horizontal-align:            0.5;
+    vertical-align:              0.5;
+}
+
+/* --- HIDE TEXT --- */
+element-text {
+    enabled:                     false;
+    vertical-align:              0.5;
+    horizontal-align:            0.5;
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+}

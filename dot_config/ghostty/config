@@ -1,0 +1,38 @@
+# ==================================
+#  GHOSTTY CONFIGURATION - PYWAL
+# ==================================
+
+# --- Fonts ---
+font-family = Monalisa
+font-size = 21
+font-feature = calt, liga, dlig
+font-thicken = true
+
+# --- Theme (Pywal) ---
+# The "?" prevents errors if the file doesn't exist yet
+config-file = ?~/.cache/wal/colors-ghostty
+
+# --- Shell ---
+command = fish
+
+# Adds "aesthetic" breathing room inside the window
+window-padding-x = 25
+window-padding-y = 25
+
+# --- Positioning & State ---
+window-save-state = always
+
+# --- Visuals ---
+# Pywal provides the color, this controls the transparency
+background-opacity = 0.75 
+background-blur-radius = 20
+window-decoration = false
+
+# --- Mouse & Cursor ---
+cursor-style = block
+cursor-style-blink = true
+cursor-click-to-move = true
+mouse-hide-while-typing = true
+
+# --- Interaction ---
+confirm-close-surface = false

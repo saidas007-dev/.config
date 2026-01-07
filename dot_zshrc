@@ -1,0 +1,226 @@
+
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+source ~/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# ~/.zshrc — Fully optimized and fast
+
+# --- Disable terminal flow control (needed for Ctrl-S) ---
+stty -ixon
+
+# --- History Options (early for plugin use) ---
+HISTSIZE=1000000000
+SAVEHIST=20000000
+HISTFILE=~/.zsh_history
+setopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+
+# --- Aliases ---
+#eza
+alias ls='eza -a --icons --color=always --no-user --hyperlink'
+alias lt='eza -a --tree --icons --color=always --no-user --hyperlink'
+alias lf='eza -A --tree --only-dirs --icons --color=always --no-user --hyperlink'
+alias lm='eza -lha --extended --total-size --sort=size --no-user --icons --color=always --changed --modified --created --hyperlink'
+alias ll='eza -lah --icons --color=always --hyperlink --no-user'
+#tmux
+alias tmatt='tmux attach -t'
+alias tmcrt='tmux new -s'
+alias tkill='tmux kill-server'
+alias tmls='tmux ls'
+alias tmdel='tmux kill-session -t'
+alias ..='cd ..'
+alias ...='z ~'
+#git
+alias gs='git status'
+alias ga='git add .'
+alias gc='git commit -m'
+alias gp='git push'
+#system
+alias upd='sudo apt update -y'
+alias upg='sudo apt full-upgrade'
+alias cls='clear'
+alias cp='cp -i'
+alias refresh='source ~/.zshrc'
+alias delete='sudo rm -rf'
+alias ins='sudo dpkg -i'
+alias is='intelli-shell'
+alias cs='gocheat'
+alias rmv='/home/kanashii/.cache.sh'
+alias matrix='unimatrix -a -b -c green -s 95 -l ckge'
+alias UNINSTALL='sudo apt autoremove --purge'
+alias zz='zee'
+alias conff='zee /home/kanashii/.zshrc'
+alias nvi='nvidia-smi'
+alias tui='tuios'
+alias lv='nvim'
+alias mb='moonbit'
+alias ff='fastfetch'
+alias rgp='rg --hidden --files | fzf'
+alias pipes='pipes.sh'
+alias python='python3'
+alias mk='mkdir'
+alias tobash="chsh -s $(which bash)  && echo 'Log out and log back in for change to take effect.'"
+alias tozsh="chsh -s $(which zsh) && echo 'Log out and log back in for change to take effect.'"
+alias psa="ps auxf"
+alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias psmem='ps auxf | sort -nr -k 4'
+alias pscpu='ps auxf | sort -nr -k 3'
+alias df='df -h'
+alias free='free -m'
+alias grep='grep --color=auto'
+alias shellcheck='echo $0'
+alias fishkill='killall -9 fish'
+alias czm='chezmoi add'
+alias czr='chezmoi re-add'
+alias thsh='/home/kanashii/.local/bin/rofi-theme.sh'
+alias ish='/home/kanashii/.local/bin/rofi-icons.sh'
+
+# --- PATH Setup (combined for speed) ---
+export PATH="$HOME/.cargo/bin:$HOME/.fzf/bin:$HOME/.local/share/intelli-shell/bin:/usr/local/go/bin:/usr/local/cuda-13.0/bin:$PATH"
+export PATH="$PATH:/home/kanashii/.local/bin:/home/kanashii/.local/share/soar/bin"
+export PATH="${PATH}:${HOME}/.local/bin"
+# --- Cargo ---
+[[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
+
+# --- NVM ---
+export NVM_DIR="$HOME/.nvm"
+[[ -s "$NVM_DIR/nvm.sh" ]] && . "$NVM_DIR/nvm.sh"
+[[ -s "$NVM_DIR/bash_completion" ]] && . "$NVM_DIR/bash_completion"
+
+# --- Go ---
+export GOPATH=$(go env GOPATH)
+export PATH=$PATH:/usr/local/go/bin
+export PATH="/usr/local/cuda/bin:$PATH"
+export PATH=$HOME/go/bin:$PATH
+
+# --- IntelliShell (lazy-load) ---
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd load_intellishell
+load_intellishell() {
+  if [[ -x "$HOME/.local/share/intelli-shell/bin/intelli-shell" ]]; then
+    export INTELLI_HOME="$HOME/.local/share/intelli-shell"
+    eval "$(intelli-shell init zsh)"
+  fi
+  add-zsh-hook -d precmd load_intellishell
+}
+
+# --- Homebrew ---
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# --- Zoxide (lazy) ---
+eval "$(zoxide init zsh)"
+
+# --- FZF (lazy-load completions and key-bindings) ---
+[[ -f ~/.fzf/shell/key-bindings.zsh ]] && source ~/.fzf/shell/key-bindings.zsh
+[[ -f ~/.fzf/shell/completion.zsh ]] && source ~/.fzf/shell/completion.zsh
+
+export FZF_DEFAULT_OPTS="
+--height=85%
+--layout=reverse
+--border=rounded
+--border-label=' FZF '
+--border-label-pos=top
+--info=inline
+--prompt='❯ '
+--marker='✓ '
+--pointer='▶ '
+--separator='─'
+--scrollbar='▐'
+--margin=2,1
+--padding=1,2
+--ansi
+--preview 'bat --color=always --style=numbers --line-range :500 {} 2>/dev/null || ls -alh --color=always {}'
+--preview-window=right:50%:rounded
+"
+
+# --- Completion & fzf-tab ---
+autoload -Uz compinit
+# Use precompiled dump if exists
+if [[ -f ~/.zsh/.zcompdump ]]; then
+  compinit -C
+else
+  compinit
+fi
+
+# fzf-tab plugin (lazy)
+[[ -f "$HOME/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh" ]] && source "$HOME/.zsh/plugins/fzf-tab/fzf-tab.plugin.zsh"
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':fzf-tab:*' show-group full
+zstyle ':fzf-tab:*' group-colors '#ffdd88'
+zstyle ':completion:*' menu yes select
+zstyle ':fzf-tab:*' switch-group ',' '.'
+
+if [ -f "$HOME/Files/Anaconda/etc/profile.d/conda.sh" ]; then
+    . "$HOME/Files/Anaconda/etc/profile.d/conda.sh"  # <--- Remove the # at the start
+    conda deactivate
+fi
+
+# --- CUDA ---
+export LD_LIBRARY_PATH=/usr/local/cuda-13.0/lib64:$LD_LIBRARY_PATH
+
+# --- Prompt ---
+PROMPT='%F{223} ☯ ⮞ %F{223}%1~%f '
+
+# --- Xterm title ---
+case $TERM in
+  xterm*|rxvt*)
+    precmd() { print -Pn "\e]0;%n@%m: %~\a" }
+  ;;
+esac
+
+# --- dircolors + ls aliases ---
+if [[ -x /usr/bin/dircolors ]]; then
+  [[ -r ~/.dircolors ]] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+# --- Lesspipe ---
+[[ -x /usr/bin/lesspipe ]] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# --- Productivity plugins (lazy-load) ---
+[[ -f ~/.zsh/plugins/zsh-you-should-use/zsh-you-should-use.plugin.zsh ]] && source ~/.zsh/plugins/zsh-you-should-use/zsh-you-should-use.plugin.zsh
+[[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+[[ -f ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# --- Gemini API Key ---
+export GEMINI_API_KEY="AIzaSyCS3y3fJ9d9jCwKbb_2JmENt8VJiVQ-6Uc"
+
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinitt
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+zinit light zsh-users/zsh-history-substring-search
+# History substring search key
+bindkey '^P' history-substring-search-up
+bindkey '^N' history-substring-search-down
+source '/home/linuxbrew/.linuxbrew/opt/autoenv/activate.sh'

@@ -1,0 +1,72 @@
+[
+  ////////////////////////////////////////////////////////////////
+  // YOUR CUSTOM KEYBINDS
+  ////////////////////////////////////////////////////////////////
+
+  // CTRL+TAB → Cycle through open files
+  { "key": "ctrl+tab", "command": "workbench.action.nextEditor" },
+
+  // ALT + B → Toggle Status Bar
+  { "key": "alt+b", "command": "workbench.action.toggleStatusbarVisibility" },
+
+  // ALT + S → Toggle Secondary Sidebar
+  { "key": "alt+s", "command": "workbench.action.toggleAuxiliaryBar" },
+
+  // CTRL + K → Delete whole line
+  {
+    "key": "ctrl+k",
+    "command": "editor.action.deleteLines",
+    "when": "editorTextFocus"
+  },
+
+  // ALT + Z → Move selection up
+  {
+    "key": "alt+z",
+    "command": "editor.action.moveLinesUpAction",
+    "when": "editorTextFocus"
+  },
+
+  // ALT + X → Move selection down
+  {
+    "key": "alt+x",
+    "command": "editor.action.moveLinesDownAction",
+    "when": "editorTextFocus"
+  },
+
+  ////////////////////////////////////////////////////////////////
+  // PRODUCTIVITY BOOSTER ADDITIONS
+  ////////////////////////////////////////////////////////////////
+
+  // FAST SPLIT VIEW CONTROL
+  { "key": "ctrl+\\", "command": "workbench.action.splitEditor" },
+  { "key": "ctrl+alt+left", "command": "workbench.action.focusLeftGroup" },
+  { "key": "ctrl+alt+right", "command": "workbench.action.focusRightGroup" },
+  { "key": "ctrl+alt+up", "command": "workbench.action.focusAboveGroup" },
+  { "key": "ctrl+alt+down", "command": "workbench.action.focusBelowGroup" },
+
+  // QUICK FILE NAVIGATION
+  { "key": "ctrl+shift+o", "command": "workbench.action.gotoSymbol" },
+  { "key": "ctrl+shift+f", "command": "workbench.action.findInFiles" },
+  { "key": "ctrl+e", "command": "workbench.action.quickOpen" },
+
+  // DUPLICATE LINE
+  {
+    "key": "ctrl+d",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus"
+  },
+
+  ////////////////////////////////////////////////////////////////
+  // TERMINAL POWER SHORTCUTS
+  ////////////////////////////////////////////////////////////////
+
+
+
+
+  ////////////////////////////////////////////////////////////////
+  // NEW ADDITIONS FOR EVEN MORE PRODUCTIVITY
+  ////////////////////////////////////////////////////////////////
+
+  // ALT + A → Toggle Activity Bar (left sidebar icons)
+  { "key": "alt+a", "command": "workbench.action.toggleActivityBarVisibility" }
+]

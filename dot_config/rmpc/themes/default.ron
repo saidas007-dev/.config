@@ -1,0 +1,18 @@
+// Inside ~/.config/rmpc/themes/default.ron
+
+layout: Split(
+    direction: Horizontal,
+    panes: [
+        // LEFT SIDE: Album Art
+        (
+            size: "40%",
+            borders: "RIGHT",
+            pane: Pane(AlbumArt)
+        ),
+        // RIGHT SIDE: Song Queue
+        (
+            size: "60%",
+            pane: Pane(Queue)
+        ),
+    ],
+),

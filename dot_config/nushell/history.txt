@@ -1,0 +1,558 @@
+ls
+cls
+clear
+lscpu 
+^clear 
+ls
+ls | sort-by size | reverse<\n># => ╭───┬─────────────────┬──────┬───────────┬──────────────╮<\n># => │ # │      name       │ type │   size    │   modified   │<\n># => ├───┼─────────────────┼──────┼───────────┼──────────────┤<\n># => │ 0 │ Cargo.lock      │ file │ 194.9 KiB │ 15 hours ago │<\n># => │ 1 │ toolkit.nu      │ file │  20.0 KiB │ 15 hours ago │<\n># => │ 2 │ README.md       │ file │  12.0 KiB │ 15 hours ago │<\n># => │ 3 │ CONTRIBUTING.md │ file │  11.0 KiB │ 5 months ago │<\n># => │ 4 │ ...             │ ...  │ ...       │ ...          │<\n># => │ 5 │ LICENSE         │ file │   1.1 KiB │ 9 months ago │<\n># => │ 6 │ CITATION.cff    │ file │     812 B │ 2 months ago │<\n># => │ 7 │ Cross.toml      │ file │     666 B │ 6 months ago │<\n># => │ 8 │ typos.toml      │ file │     513 B │ 2 months ago │<\n># => ╰───┴─────────────────┴──────┴───────────┴──────────────╯
+^ps aux  # run the Unix ps command with all processes in user-oriented form
+echo "Hello, World"<\n># => Hello, World
+explore 
+ls
+cls
+clear
+eza 
+ls
+zoxide init nushell | save -f ~/.config/nushell/zoxide.nu<\n>source ~/.config/nushell/zoxide.nu<\n>
+zoxide init nushell | save -f ~/.config/nushell/zoxide.nu<\n>
+<\n>source ~/.config/nushell/zoxide.nu<\n>
+z do
+ls
+cls
+clear
+ls
+ll
+which eza
+ls
+cls
+ls
+clear
+cls
+ls
+cls
+clear
+ls
+fzf
+cls
+refresh
+ls
+ez
+eza
+ls
+ls -la
+l
+xls
+cls
+$nu.config-path
+nu.config-path
+ls | where type == "dir"
+ls -lt
+ls -la
+ll
+ls
+ll
+clear
+ls
+ll
+ls
+clear
+ls
+ls | where type == "dir"
+clear
+ls
+ll
+lls
+ls
+cls
+ls
+clear
+ls
+ll 
+ls
+cls
+clear
+ls
+ll
+ls | where type == "dir"
+ls
+wezterm 
+ls
+nvidia-smi
+nvcc --version
+clear
+ls
+cls
+clear
+ls
+ls 
+ls
+$env | table -e<\n># => ╭──────────────────────────────────┬───────────────────────────────────────────╮<\n># => │                                  │ ╭──────┬────────────────────────────────╮ │<\n># => │ ENV_CONVERSIONS                  │ │      │ ╭─────────────┬──────────────╮ │ │<\n># => │                                  │ │ PATH │ │ from_string │ <Closure 32> │ │ │<\n># => │                                  │ │      │ │ to_string   │ <Closure 34> │ │ │<\n># => │                                  │ │      │ ╰─────────────┴──────────────╯ │ │<\n># => │                                  │ │      │ ╭─────────────┬──────────────╮ │ │<\n># => │                                  │ │ Path │ │ from_string │ <Closure 36> │ │ │<\n># => │                                  │ │      │ │ to_string   │ <Closure 38> │ │ │<\n># => │                                  │ │      │ ╰─────────────┴──────────────╯ │ │<\n># => │                                  │ ╰──────┴────────────────────────────────╯ │<\n># => │ HOME                             │ /Users/jelle                              │<\n># => │ LSCOLORS                         │ GxFxCxDxBxegedabagaced                    │<\n># => | ...                              | ...                                       |<\n># => ╰──────────────────────────────────┴───────────────────────────────────────────╯
+$env | table 
+ls
+which ls
+which eza
+which eza fzf
+ls
+date from-human 
+alias 
+date 
+date now
+date to-timezone 
+date to-timezone asia
+date to-timezone | asia
+sudo apt install starship
+which brew
+brew install starship
+ll
+ls
+ll
+cls
+ls
+ll
+ls
+z Fi
+z Files/Workspace/
+which z 
+which zoxide
+cd Files/Workspace/
+ls
+cd Dot_Files/
+ls
+git init
+ls
+cd Dot_Files/
+cd Files/Workspace/
+cd Dot_Files/
+git status
+refresh
+pwd
+ll
+eza
+eza --icons
+fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf<\n>~/.fzf/install
+zee
+cls
+clear
+ls
+ll
+clear
+ls
+ll
+z Files/Workspace/
+ls
+prompt 
+ls
+z Desktop/
+ls
+pwd
+z Files/Workspace/
+ls
+..
+ls
+git init
+ls
+git status
+ls
+z Files/Workspace/
+ls
+pwd
+lss
+z Files/Workspace/
+ls
+z Files/Workspace/
+ls
+source 
+source .config/nushell/config.nu
+ls
+# Generate the .oh-my-posh.nu file<\n>oh-my-posh init nu --config ~/.poshthemes/M365Princess.omp.json<\n><\n># Initialize oh-my-posh.nu at shell startup by adding this line in your config.nu file<\n>source ~/.oh-my-posh.nu
+# Generate the .oh-my-posh.nu fileoh-my-posh init nu --config ~/.poshthemes/M365Princess.omp.json<\n><\n># Initialize oh-my-posh.nu at shell startup by adding this line in your config.nu file<\n>source ~/.oh-my-posh.nu
+ls
+z Files/Workspace/
+source .config/nushell/config.nu
+z Files/Workspace/
+oh-my-posh init nu --config ~/.poshthemes/M365Princess.omp.json
+source ~/.oh-my-posh.nu
+ls
+source .config/nushell/config.nu
+ls
+clea
+clear
+ls
+z Files/Workspace/
+ls
+ll
+ls
+l
+cls
+clear
+pwd
+ls
+ls | where type == "dir"
+z Files/Workspace/
+ls
+z Files/Workspace/
+ls
+z Files/Workspace/
+ls
+cls
+clear
+rmv
+pwd
+ls
+./cache.sh
+./.cache.sh
+ls
+clear
+ls
+z Files/Workspace/
+ls
+z Files/Workspace/
+ls
+ll
+ls
+z Files/Workspace/
+ls\
+ls
+z Files/Workspace/
+ls
+config nu
+source .config/nushell/config.nu
+ls
+nvcc --version
+z Files/Enviornments/
+..
+source Enviornments/bin/activate
+./.cache.sh
+ls
+ll
+cls
+clear
+ls
+ll
+ls
+clear
+ls
+l
+ls
+z Doc
+ls
+z C++/
+ls
+..
+z Python/
+ls
+z Books/
+ls
+ls | where size >1mb
+ls | where size > 1mb
+cd /
+ls
+ls | where size > 1 gb
+ls | where size > 1gb
+ls
+$env | table 
+ls
+^ls -lh                             # Force external command<\n>git status<\n>sudo pacman -S neovim               # External tools work normally<\n>
+git status
+ls
+cd /home/kanashii/
+ls
+^ls -lh 
+^ls -la
+ls -la
+ls
+ps
+ps | where running
+df
+help 
+ls
+help ls
+man ls
+tldr ls
+eg ls
+navi
+fzf
+ls
+rmv
+./.cache.sh
+z Files/Enviornments/
+ls
+source Enviornments/bin/activate
+..
+source Enviornments/bin/activate
+cls
+clear
+c;s
+clear
+ls
+ls 
+ls -a
+ls
+ls -a
+ls
+ls -a
+ls
+ls -.
+ls -la
+ls -a
+ls
+ls -a
+ls
+ls -a
+ls
+ls -a
+ls
+ls -a
+clear
+ls -a
+ls
+ls -a
+clear
+ls
+ls -t
+ls -ls
+ls -lsa
+ls
+ls 
+ls
+clear
+ls
+ls -a
+.cache.sh
+./.cache.sh
+ls
+ll
+clear
+ls
+;s
+ls
+zee /home/kanashii/.config/wezterm/wezterm.lua
+zee /home/kanashii/.config/starship.toml
+ls
+zee /home/kanashii/.config/starship.toml
+ls
+ls -a
+ls
+ls -a
+l
+ls -a
+eza --icons --tree
+eza --icons --tree --long
+sudo docker image ls
+ls
+eza --icons --tree --long
+ls
+ls -la
+ls --a
+ls -a
+z  Files/
+ls
+z Workspace/
+ls -a
+ls
+ls -a
+ls
+ls -a
+ls
+eza --icons --tree --long
+ls
+ll
+clear
+ls
+l
+ls
+toney
+ls
+ls -a 
+ls
+cls
+clear
+config nu
+refresh
+ls
+n
+ls
+ll
+source .config/nushell/config.nu
+ll
+n
+v
+ls
+ll
+ezl
+lv
+conff
+source .config/nushell/config.nu
+ls
+lv
+ll
+ezl
+ls
+conff
+ks
+explore 
+ls
+pz
+ps
+ls
+ls -ta
+tldr ls
+ls -l --human-readale
+ls -l -
+ls -l 
+ls -all
+ls --all
+tldr ls
+eg ls
+ls -alh
+ls -a -du
+ls -adu
+ls -du
+ls --du
+ls --du --al
+ls --du --all
+pwd
+ls --du --all
+ls --du --all --threads
+ls --du --all 
+ls --du --all --threads
+ls -h
+ls --du --all --threads --directory
+z Workspace/
+ls --du --all --threads --directory
+z Doc
+ls --du --all --threads --directory
+ls -a -d 
+ls -l
+...
+ls -l
+z kanashii/
+ls -l
+ls -l -a -d
+lis
+eza  -lha  --extended --total-size --icons=always --changed --modified --created
+ls -l -a -d
+ls -lh --time-style==
+ls -lh --time-style=+
+ls
+ls -l -a -d
+ls -a -d
+eza  -lha  --extended --total-size --icons=always --changed --modified --created
+eza  -lha  --extended --total-size --no-user --icons=always --changed --modified --created
+ls
+im
+ezt 
+ansi 
+matrix 
+pipes 
+lm
+is
+psmem 
+psa 
+lm
+ezd 
+eza --hyperlink=auto
+eza --hyperlink
+source .config/nushell/config.nu
+regedit 
+eza --hyperlink=auto
+eza --hyperlink
+ezl
+ezd
+lm
+ls | select mode name sizw
+ls | select mode name size
+ls | select  name size
+lm | select  name size 
+lm | select mode name size 
+lm | select modified name size 
+lm | select permissions name size 
+ls | select permissions name size 
+ls -a -d
+ls -a -d -l
+lm | select name size mode
+ls -a -d -l | select  mode
+ls -a -d -l | select  mode name size type
+llm
+lm
+conff
+ll
+ls
+lm
+ls
+ll
+ls
+ll
+conff
+ll
+ff
+ls
+ll
+echo $SHELL
+$env.SHELL
+ls
+shellcheck 
+echo $SHELL
+$env.SHELL
+echo $0
+echo $0$nu.current-exe
+$nu.current-exe
+version 
+ms
+ls
+# For sh-compatible shells on Linux/macOS/Windows (Bash, Zsh, Fish, Nu, Git Bash)<\n>curl -sSf https://raw.githubusercontent.com/lasantosr/intelli-shell/main/install.sh | sh
+ls
+which intelli-shell
+# For sh-compatible shells on Linux/macOS/Windows (Bash, Zsh, Fish, Nu, Git Bash)<\n>curl -sSf https://raw.githubusercontent.com/lasantosr/intelli-shell/main/install.sh | sh
+ls
+which intelli-shell
+$env.PATH = ($env.PATH | split row (char esep) | append '/home/kanashii/.local/share/intelli-shell/bin')
+intelli-shell init nushell | save -f ($nu.data-dir | path join "vendor/autoload/intelli-shell.nu")
+which intelli-shell
+ls
+ls | select name mode
+which intelli-shell
+brew list
+brew list | table 
+brew list | lines
+cargo list
+cargo install --list
+pik
+cargo install --list
+tui-journal
+tuijournal
+$ tjournal
+cls
+ll
+ls
+zz 
+lv /home/kanashii/.config/wezterm/wezterm.lua
+ll
+ls
+rmv
+ll
+ezd
+ezl
+ls
+lv Desktop/
+lv /home/kanashii/.config/wezterm/wezterm.lua
+ls
+cls
+ls
+sc
+shellcheck 
+conff
+ms
+ls
+ll
+cls
+ls
+ll
+ls
+bat .bashrc
+ls
+ll
+lm
+ls
+which chezmoi

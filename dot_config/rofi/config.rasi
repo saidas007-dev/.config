@@ -1,0 +1,327 @@
+/*
+<<<<<<< HEAD
+ * ROFI APP LAUNCHER (System Theme Vertical Edition)
+ * Features: Tall Window, No Terminal, All Workspaces, System Colors
+ */
+
+configuration {
+    /* 1. ENABLE MODES */
+    modi:                "drun,filebrowser,window";
+    
+    show-icons:          true;
+    drun-display-format: "{name}";
+    font:                "JetBrainsMono Nerd Font 10";
+    
+    /* 2. WINDOW MODE SETTINGS */
+    window-format:       "{w} · {c} · {t}";
+    
+    /* 3. CUSTOM ICONS FOR BOTTOM BAR */
+    display-drun:        "";   /* Apps */
+    display-filebrowser: "";   /* Files */
+    display-window:      "";   /* Windows */
+}
+
+/* --- Main Window --- */
+window {
+    enabled:             true;
+    fullscreen:          false;
+    
+    /* TALL & NARROW LOOK */
+    width:               35%;
+    height:              75%;
+    
+    transparency:        "real";
+    cursor:              "default";
+    spacing:             0px;
+    padding:             0px;
+    border:              2px;
+    border-radius:       15px;
+    
+    /* Use System Border Color */
+    border-color:        @selected-normal-background;
+    
+    /* Use System Background Color */
+    background-color:    @normal-background;
+}
+
+/* --- Main Box --- */
+mainbox {
+    enabled:             true;
+    children:            [ inputbar, listview, mode-switcher ];
+    background-color:    transparent;
+    spacing:             20px;
+    padding:             30px;
+}
+
+/* --- Input Bar (Top) --- */
+inputbar {
+    enabled:             true;
+    spacing:             10px;
+    padding:             12px;
+    border-radius:       10px;
+    
+    /* Use System Alternate Background for contrast */
+    background-color:    @alternate-normal-background;
+    text-color:          @normal-foreground;
+    children:            [ textbox-prompt-colon, entry ];
+}
+
+textbox-prompt-colon {
+    enabled:             true;
+    expand:              false;
+    str:                 "🚀 "; 
+    background-color:    transparent;
+    text-color:          inherit;
+}
+
+entry {
+    enabled:             true;
+    background-color:    transparent;
+    text-color:          inherit;
+    cursor:              text;
+    placeholder:         "Search...";
+    placeholder-color:   inherit;
+}
+
+/* --- List View (The Grid) --- */
+listview {
+    enabled:             true;
+    columns:             3;          /* Reduced columns for narrower window */
+    lines:               6;          /* Increased rows for taller window */
+    cycle:               true;
+    dynamic:             true;
+    scrollbar:           false;
+    layout:              vertical;
+    reverse:             false;
+    fixed-height:        true;
+    fixed-columns:       true;
+    spacing:             10px;
+    background-color:    transparent;
+    cursor:              "default";
+}
+
+element {
+    enabled:             true;
+    orientation:         vertical;
+    spacing:             10px;
+    padding:             20px;
+    border-radius:       12px;
+    cursor:              pointer;
+    background-color:    transparent;
+    text-color:          @normal-foreground;
+}
+
+element selected.normal {
+    background-color:    @selected-normal-background;
+    text-color:          @selected-normal-foreground;
+    border-radius:       12px;
+}
+
+element-icon {
+    size:                64px;
+    cursor:              inherit;
+    background-color:    transparent;
+    horizontal-align:    0.5;
+    vertical-align:      0.5;
+}
+
+element-text {
+    enabled:             true;
+    vertical-align:      0.5;
+    horizontal-align:    0.5;
+    background-color:    transparent;
+    text-color:          inherit;
+    cursor:              inherit;
+}
+
+/* --- Mode Switcher (Bottom Bar) --- */
+mode-switcher {
+    enabled:             true;
+    spacing:             20px;
+    background-color:    transparent;
+    text-color:          @normal-foreground;
+}
+
+button {
+    padding:             10px;
+    border-radius:       10px;
+    background-color:    @alternate-normal-background; 
+    text-color:          inherit;
+    cursor:              pointer;
+}
+
+button selected {
+    background-color:    @selected-normal-background;   
+    text-color:          @selected-normal-foreground;   
+=======
+ * ROFI LIST (Balanced Nord Edition)
+ * Layout: Vertical List, Soft Dark Blue-Grey Backgrounds
+ */
+
+/***** COLORS *****/
+* {
+    /* Background: Nord Polar Night (Deep Blue-Grey) with 95% Opacity */
+    bg:                          #2E3440F2;
+    
+    /* Input/Button BG: Lighter Polar Night */
+    bg-alt:                      #3B4252FF;
+    
+    /* Text: Snow Storm (White) */
+    fg:                          #ECEFF4;
+    
+    /* Accent: Nord Frost (Cyan) */
+    accent:                      #88C0D0;
+    
+    /* Selection Text: Dark background for contrast */
+    text-on-accent:              #2E3440;
+
+    background-color:            transparent;
+    text-color:                  @fg;
+    margin:                      0px;
+    padding:                     0px;
+}
+
+configuration {
+    modi:                        "drun,filebrowser,window";
+    show-icons:                  true;
+    display-drun:                "";
+    display-run:                 "";
+    display-filebrowser:         "";
+    display-window:              "";
+    drun-display-format:         "{name}";
+    window-format:               "{w} · {c} · {t}";
+    
+    /* Font: Crisp and clean */
+    font:                        "JetBrainsMono Nerd Font Bold 10";
+}
+
+/***** WINDOW *****/
+window {
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    
+    /* WIDTH: Narrower for a list view */
+    width:                       30%;
+    height:                      55%;
+    
+    /* Styling */
+    border:                      2px;
+    border-color:                @accent;
+    border-radius:               15px;
+    background-color:            @bg;
+    cursor:                      "default";
+}
+
+/***** MAIN CONTAINER *****/
+mainbox {
+    enabled:                     true;
+    spacing:                     0px;
+    padding:                     30px;
+    background-color:            transparent;
+    children:                    [ "inputbar", "listview", "mode-switcher" ];
+}
+
+/***** INPUT BAR (Top Search) *****/
+inputbar {
+    enabled:                     true;
+    spacing:                     10px;
+    padding:                     12px;
+    margin:                      0px 0px 20px 0px;
+    border-radius:               10px;
+    background-color:            @bg-alt;
+    text-color:                  @fg;
+    children:                    [ "textbox-prompt-colon", "entry" ];
+}
+
+textbox-prompt-colon {
+    enabled:                     true;
+    expand:                      false;
+    str:                         "🔍";
+    padding:                     0 10px 0 0;
+    background-color:            transparent;
+    text-color:                  inherit;
+}
+
+entry {
+    enabled:                     true;
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      text;
+    placeholder:                 "Search...";
+    placeholder-color:           #4C566A; /* Nord Comment Grey */
+}
+
+/***** LISTVIEW (Vertical List) *****/
+listview {
+    enabled:                     true;
+    columns:                     1;      /* Single column */
+    lines:                       8;      /* Show 8 items at a time */
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+    
+    spacing:                     10px;   /* Space between items */
+    background-color:            transparent;
+    cursor:                      "default";
+}
+
+/***** APP ELEMENTS *****/
+element {
+    enabled:                     true;
+    orientation:                 horizontal; /* Icon LEFT of text */
+    spacing:                     15px;       /* Space between icon and text */
+    padding:                     10px;       /* Smaller padding for list items */
+    border-radius:               10px;
+    cursor:                      pointer;
+    background-color:            transparent;
+    text-color:                  @fg;
+}
+
+element selected.normal {
+    background-color:            @accent;
+    text-color:                  @text-on-accent;
+}
+
+element-icon {
+    size:                        32px; /* SMALLER ICONS */
+    cursor:                      inherit;
+    background-color:            transparent;
+    vertical-align:              0.5;
+}
+
+element-text {
+    enabled:                     true;
+    vertical-align:              0.5;
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+}
+
+/***** MODE SWITCHER (Bottom Tabs) *****/
+mode-switcher {
+    enabled:                     true;
+    spacing:                     15px;
+    margin:                      20px 0px 0px 0px;
+    background-color:            transparent;
+    text-color:                  @fg;
+}
+
+button {
+    padding:                     10px;
+    border-radius:               8px;
+    background-color:            @bg-alt;
+    text-color:                  inherit;
+    cursor:                      pointer;
+}
+
+button selected {
+    background-color:            @accent;
+    text-color:                  @text-on-accent;
+>>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))
+}
