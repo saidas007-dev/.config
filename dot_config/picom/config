@@ -1,0 +1,21 @@
+# --- BLUR SETTINGS ---
+# "dual_kawase" is the smoothest blur method available
+blur-method = "dual_kawase";
+
+# Strength of the blur (0 - 20).
+# 3 is subtle, 7 is standard frosted glass, 12 is very heavy.
+blur-strength = 6;
+
+# Blur background of semi-transparent windows
+blur-background = true;
+
+# Optional: Blur the window frame (borders)
+blur-background-frame = false;
+
+# Optional: Disable blur for specific windows (prevents artifacts on menus/screenshots)
+blur-background-exclude = [
+  "window_type = 'dock'",
+  "window_type = 'desktop'",
+  "class_g = 'Slop'",       # Maim/Slop screenshot tools
+  "_GTK_FRAME_EXTENTS@:c"
+];
