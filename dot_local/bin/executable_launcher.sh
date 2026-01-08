@@ -1,18 +1,46 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-# Define the theme path
-THEME="$HOME/.config/rofi/themes/powermenu.rasi"
+# --- Configuration ---
 
-# Icons (Lock, Reboot, Shutdown, Restart i3)
-options="󰌾\n󰜉\n󰐥\n󰑐"
+THEME="$HOME/.config/rofi/themes/i3menu.rasi"
+# --- Power Menu Options ---
+# Format: "Title" "Command" "Icon"
+declare -A power_actions
+power_actions=(
+  [" Shutdown"]="systemctl poweroff"
+  [" Reboot"]="systemctl reboot"
+  [" Lock"]="i3lock --color 1e1e2e" # Basic dark lock. Use 'betterlockscreen -l' if installed.
+  [" Suspend"]="systemctl suspend"
+  [" Logout"]="i3-msg exit" # The correct way to exit i3wm
+)
 
-# Launch rofi
-selected="$(echo -e "$options" | rofi -dmenu -i -p "System" -theme "$THEME")"
+# Order of appearance
+options=" Shutdown\n Reboot\n Suspend\n Lock\n Logout"
 
-# Execute commands based on the exact icon selected
-case "$selected" in
-    "󰌾") cinnamon-screensaver-command -l || i3lock ;;
-    "󰜉") systemctl reboot ;;
-    "󰐥") systemctl poweroff ;;
-    "󰑐") i3-msg restart ;;
-esac
+# --- Logic ---
+
+# 1. If script is run with no arguments, Launch Rofi
+# We define two modes: 'drun' (Apps) and 'Power' (This script running in mode 2)
+if [ -z "$@" ]; then
+  rofi -show drun \
+    -modi "drun,Power:$0 --mode" \
+    -theme "$THEME"
+  exit 0
+fi
+
+# 2. If run in 'Power' mode (by Rofi)
+if [ "$1" == "--mode" ]; then
+  # If no selection ($2 is empty), print the list
+  if [ -z "$2" ]; then
+    echo -e "$options"
+  else
+    # Execute the command associated with the selected title
+    action="${power_actions[$2]}"
+    if [ ! -z "$action" ]; then
+      # Detach and run.
+      # 'nohup' ensures the command continues even if the terminal/rofi closes.
+      nohup $action >/dev/null 2>&1 &
+      exit 0
+    fi
+  fi
+fi

@@ -28,7 +28,7 @@ PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 # --- 5. PATH & Environment Variables ---
 # Consolidating PATH
 export PATH="$HOME/.cargo/bin:$HOME/.fzf/bin:$HOME/.local/share/intelli-shell/bin:/usr/local/go/bin:/usr/local/cuda-13.0/bin:$HOME/.nvm/versions/node/v*/bin:$PATH"
-
+export PATH="$PATH:/home/kanashii/.local/bin:/home/kanashii/.local/share/soar/bin"
 # Go Lang
 export GOPATH="$(go env GOPATH 2>/dev/null)"
 [[ -n "$GOPATH" ]] && export PATH="$PATH:$GOPATH/bin"
@@ -38,7 +38,7 @@ export PATH="/usr/local/cuda/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda-13.0/lib64:$LD_LIBRARY_PATH"
 
 # Gemini API
-export GEMINI_API_KEY="AIzaSyCS3y3fJ9d9jCwKbb_2JmENt8VJiVQ-6Uc"
+export GEMINI_API_KEY="AIzaSyD-BLjCO4LQgAfsmKxQ2dm2Ocf5qpsBpFM"
 
 # --- 6. Tool Initialization ---
 
@@ -155,6 +155,16 @@ case "$TERM" in
 esac
 
 
-eval "$(oh-my-posh init bash --config /home/kanashii/.cache/oh-my-posh/themes/blue-owl.omp.json)"
+eval "$(oh-my-posh init bash --config /home/kanashii/.cache/oh-my-posh/themes/bubbles.omp.json)"
 # Starship Prompt (Must be last to override PS1 correctly)
 #command -v starship >/dev/null 2>&1 && eval "$(starship init bash)"
+source '/home/linuxbrew/.linuxbrew/opt/autoenv/activate.sh'
+
+. "$HOME/.atuin/bin/env"
+
+[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+eval "$(atuin init bash)"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

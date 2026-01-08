@@ -2,13 +2,8 @@
 
 # --- CONFIGURATION ---
 # DOUBLE CHECK: Is it "Wallpaper" or "Wallpapers"? Linux is case-sensitive!
-<<<<<<< HEAD
-WALLPAPER_DIR="/home/kanashii/Pictures/Wallpaper/Github/nord"
-THEME_FILE="$HOME/.config/rofi/wallpaper.rasi"
-=======
 WALLPAPER_DIR="/home/kanashii/Pictures/Wallpaper/Colorschemes/gruvbox"
 THEME_FILE="$HOME/.config/rofi/themes/wallpaper.rasi"
->>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))
 
 # --- LOGIC ---
 

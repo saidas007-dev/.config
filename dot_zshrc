@@ -30,8 +30,8 @@ setopt EXTENDED_HISTORY
 alias ls='eza -a --icons --color=always --no-user --hyperlink'
 alias lt='eza -a --tree --icons --color=always --no-user --hyperlink'
 alias lf='eza -A --tree --only-dirs --icons --color=always --no-user --hyperlink'
-alias lm='eza -lha --extended --total-size --sort=size --no-user --icons --color=always --changed --modified --created --hyperlink'
-alias ll='eza -lah --icons --color=always --hyperlink --no-user'
+alias lm='eza -lah --extended --total-size --sort=size --no-user --icons --color=always --changed --modified --created --hyperlink'
+alias ll='eza -lah --icons --inode --color=always --hyperlink --no-user'
 #tmux
 alias tmatt='tmux attach -t'
 alias tmcrt='tmux new -s'
@@ -51,15 +51,15 @@ alias upg='sudo apt full-upgrade'
 alias cls='clear'
 alias cp='cp -i'
 alias refresh='source ~/.zshrc'
-alias delete='sudo rm -rf'
+alias delete='sudo rm -irf'
 alias ins='sudo dpkg -i'
 alias is='intelli-shell'
 alias cs='gocheat'
-alias rmv='/home/kanashii/.cache.sh'
+alias rmv='/home/kanashii/.local/bin/.cache.sh'
 alias matrix='unimatrix -a -b -c green -s 95 -l ckge'
 alias UNINSTALL='sudo apt autoremove --purge'
 alias zz='zee'
-alias conff='zee /home/kanashii/.zshrc'
+alias zshconfig='zee /home/kanashii/.zshrc'
 alias nvi='nvidia-smi'
 alias tui='tuios'
 alias lv='nvim'
@@ -82,13 +82,21 @@ alias shellcheck='echo $0'
 alias fishkill='killall -9 fish'
 alias czm='chezmoi add'
 alias czr='chezmoi re-add'
-alias thsh='/home/kanashii/.local/bin/rofi-theme.sh'
-alias ish='/home/kanashii/.local/bin/rofi-icons.sh'
-
+alias ccd='chezmoi cd'
+alias mem='/home/kanashii/.local/bin/cleanram.sh'
+alias imem='/home/kanashii/.local/bin/smart_ram.sh'
+alias wsh='zee /home/kanashii/.local/bin/rofi-wall.sh'
+alias i3con='nvim ~/.config/i3/config'
+alias kityconf='nvim /home/kanashii/.config/kitty/kitty.conf'
+alias rin='git-scope'
 # --- PATH Setup (combined for speed) ---
+export EDITOR='nvim'
+export VISUAL='nvim'
+export INTELLI_FIX_HOTKEY='^m'
 export PATH="$HOME/.cargo/bin:$HOME/.fzf/bin:$HOME/.local/share/intelli-shell/bin:/usr/local/go/bin:/usr/local/cuda-13.0/bin:$PATH"
 export PATH="$PATH:/home/kanashii/.local/bin:/home/kanashii/.local/share/soar/bin"
 export PATH="${PATH}:${HOME}/.local/bin"
+
 # --- Cargo ---
 [[ -f "$HOME/.cargo/env" ]] && source "$HOME/.cargo/env"
 
@@ -102,6 +110,16 @@ export GOPATH=$(go env GOPATH)
 export PATH=$PATH:/usr/local/go/bin
 export PATH="/usr/local/cuda/bin:$PATH"
 export PATH=$HOME/go/bin:$PATH
+
+
+
+# --- IntelliShell Setup (Configs + Lazy Load) ---
+# Configurations must be exported BEFORE intelli-shell init
+
+
+export INTELLI_FIX_HOTKEY='^y'
+# 5. Prevent Esc from clearing the line
+export INTELLI_SKIP_ESC_BIND=1
 
 # --- IntelliShell (lazy-load) ---
 autoload -Uz add-zsh-hook
@@ -193,7 +211,7 @@ fi
 
 
 # --- Gemini API Key ---
-export GEMINI_API_KEY="AIzaSyCS3y3fJ9d9jCwKbb_2JmENt8VJiVQ-6Uc"
+export GEMINI_API_KEY="AIzaSyD-BLjCO4LQgAfsmKxQ2dm2Ocf5qpsBpFM"
 
 
 ### Added by Zinit's installer
@@ -224,3 +242,99 @@ zinit light zsh-users/zsh-history-substring-search
 bindkey '^P' history-substring-search-up
 bindkey '^N' history-substring-search-down
 source '/home/linuxbrew/.linuxbrew/opt/autoenv/activate.sh'
+
+bindkey ' ' magic-space
+
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^X^E' edit-command-line
+
+# -------------------------------------------
+# 5. Suffix Aliases - Open Files by Extension
+# -------------------------------------------
+# Just type the filename to open it with the associated program
+alias -s json=jless
+alias -s md=bat
+alias -s go='$EDITOR'
+alias -s rs='$EDITOR'
+alias -s txt=bat
+alias -s log=bat
+alias -s py='$EDITOR'
+alias -s cpp='$EDITOR'
+alias -s ts='$EDITOR'
+alias -s html=open  # macOS: open in default browser
+alias -s json='$EDITOR'
+alias -s toml='$EDITOR'
+alias -s conf='$EDITOR'
+alias -s lua='$EDITOR'
+
+
+
+# -------------------------------------------
+# 6. Global Aliases - Use Anywhere in Commands
+# -------------------------------------------
+# Redirect stderr to /dev/null
+alias -g NE='2>/dev/null'
+
+# Redirect stdout to /dev/null
+alias -g NO='>/dev/null'
+
+# Redirect both stdout and stderr to /dev/null
+alias -g NUL='>/dev/null 2>&1'
+
+# Pipe to jq
+alias -g J='| jq'
+
+
+
+
+# Clear screen but keep current command buffer
+function clear-screen-and-scrollback() {
+  echoti civis >"$TTY"
+  printf '%b' '\e[H\e[2J\e[3J' >"$TTY"
+  echoti cnorm >"$TTY"
+  zle redisplay
+}
+zle -N clear-screen-and-scrollback
+bindkey '^X^L' clear-screen-and-scrollback
+
+
+
+# --- COPY TO CLIPBOARD SECTION ---
+
+# 1. Define the function
+function copy-buffer-to-clipboard() {
+    # 'xsel -b' targets the clipboard (Ctrl+V buffer)
+    # 'xsel -i' reads from input
+    print -rn -- "$BUFFER" | xsel -b -i
+
+
+}
+
+# 2. Register it as a widget
+zle -N copy-buffer-to-clipboard
+
+# 3. Bind to Alt+c
+bindkey '^[c' copy-buffer-to-clipboard
+
+
+
+
+
+ # In .bashrc or .zshrc
+ # This forces Atuin to use no background color (transparent)
+ # and use your terminal's text colors.
+
+# In .bashrc or .zshrc
+export ATUIN_NO_UP_BINDING="true"
+export ATUIN_NOBIND="true"
+
+ . "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
+
+# Bind Ctrl+f to Atuin search
+bindkey '^f' atuin-search
+
+# Bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
