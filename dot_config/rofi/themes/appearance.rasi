@@ -1,35 +1,17 @@
 configuration {
     /* Global Font Setting (Safe and Error-Free) */
-<<<<<<< HEAD
-    font: "JetBrainsMono Nerd Font Bold Italic 13";
-    
-    /* Map modes to emojis */
-    display-Themes: " 🎨 Themes ";
-    display-Icons:  " 🗃️ Icons ";
-    
-=======
     font: "MapleMono Nerd Font Bold 13";
 
     /* Map modes to emojis */
     display-Themes: " 🎨 Themes ";
     display-Icons:  " 🗃️ Icons ";
 
->>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))
     show-icons:     true;
     drun-display-format: "{name}";
 }
 
 * {
     /* --- Wallpaper Palette --- */
-<<<<<<< HEAD
-    
-    /* Deep Slate / Night Sky (Background) */
-    color-bg:      #0E1117; 
-    
-    /* Muted Steel Blue (Selection/Highlights) */
-    color-accent:  #586A7A; 
-    
-=======
 
     /* Deep Slate / Night Sky (Background) */
     color-bg:      #0E1117;
@@ -37,27 +19,11 @@ configuration {
     /* Muted Steel Blue (Selection/Highlights) */
     color-accent:  #586A7A;
 
->>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))
     /* Text Colors */
     color-text:    #E6EAF0;
     color-mute:    #E6EAF066; /* 40% opacity */
 
     /* --- Transparency Settings --- */
-<<<<<<< HEAD
-    
-    /* Main Window: Deep Slate with ~70% opacity */
-    bg-col:        #0E1117B3; 
-    
-    /* Sidebar: Slightly darker/more opaque (~85%) for contrast */
-    bg-sidebar:    #090B0FD9; 
-    
-    /* Input/Element Backgrounds: Very subtle light tint */
-    bg-light:      #FFFFFF0D; 
-    
-    /* Selection: Steel Blue with ~40% opacity */
-    selected-col:  #586A7A66; 
-    
-=======
 
     /* Main Window: Deep Slate with ~70% opacity */
     bg-col:        #0E1117B3;
@@ -71,7 +37,6 @@ configuration {
     /* Selection: Steel Blue with ~40% opacity */
     selected-col:  #586A7A66;
 
->>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))
     /* Borders: Subtle steel blue */
     border-col:    #586A7A4D;
 
@@ -86,24 +51,14 @@ configuration {
 window {
     location: center;
     anchor:   center;
-<<<<<<< HEAD
-    width:    32em; 
-    height:   55%;
-    
-=======
     width:    32em;
     height:   55%;
 
->>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))
     background-color: @bg-col;
     border:           2px;
     border-color:     @border-col;
     border-radius:    16px;
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))
     orientation:      horizontal;
     children:         [ mode-switcher, mainbox ];
 }
@@ -125,22 +80,14 @@ button {
     background-color: transparent;
     text-color:       @color-mute;
     cursor:           pointer;
-<<<<<<< HEAD
-    vertical-align:   0.5; 
-=======
     vertical-align:   0.5;
->>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))
     horizontal-align: 0.5;
 }
 
 button selected {
     background-color: @selected-col;
     text-color:       @color-text;
-<<<<<<< HEAD
-    border:           1px; 
-=======
     border:           1px;
->>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))
     border-color:     @color-accent;
 }
 
@@ -203,10 +150,6 @@ element-text {
     background-color: transparent;
     text-color:       inherit;
     /* Highlights text matches in the Steel Blue accent color */
-<<<<<<< HEAD
-    highlight:        bold #88C0D0; 
-=======
     highlight:        bold #88C0D0;
->>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))
     vertical-align:   0.5;
 }

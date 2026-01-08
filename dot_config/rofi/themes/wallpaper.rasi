@@ -12,11 +12,7 @@ configuration {
     me-accept-entry:             "MousePrimary";
 }
 
-<<<<<<< HEAD
-@import "shared/fonts.rasi" 
-=======
  
->>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))
 
 /* --- Main Window --- */
 window {
