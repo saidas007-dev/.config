@@ -75,9 +75,10 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # --- AUTOSTART ---
-exec_always --no-startup-id feh --bg --scal /home/kanashii/Pictures/wallpapers/Workspaces/3.jpg
+exec --no-startup-id feh --bg --scal /home/kanashii/Pictures/wallpapers/Workspaces/3.jpg
 exec_always --no-startup-id picom -b
 exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id killall -q conky; sleep 1; conky
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
 exec --no-startup-id ulauncher --hide-window

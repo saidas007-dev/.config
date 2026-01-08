@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-#!/usr/bin/env bash
-killall -q polybar
-while pgrep -u $UID -x polybar >/dev/null; do sleep 0.2; done
-polybar top &
-disown
-
-=======
 #!/bin/bash
 
 # Terminate already running bar instances
@@ -21,4 +13,3 @@ polybar top 2>&1 | tee -a /tmp/polybar.log &
 polybar tray 2>&1 | tee -a /tmp/polybar-tray.log &
 
 disown
->>>>>>> 80b87be (7 Jan Wednesday , 21:16 i3 and Polybar (Updated))
